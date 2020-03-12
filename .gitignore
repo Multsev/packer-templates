@@ -1,0 +1,5 @@
+
+_builds/
+_common/virtio/
+packer_cache/
+
