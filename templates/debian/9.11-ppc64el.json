@@ -1,0 +1,20 @@
+{
+    "template": "debian-9.11-ppc64el",
+    "name": "debian-9.11",
+    "box_basename": "debian-9.11",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "iso_name": "debian-9.11.0-ppc64el-netinst.iso",
+    "iso_checksum": "5d785af424e0259474f48bf55c5bf7aee19a945fdd74a3eb765f1c55f83cb554",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://cdimage.debian.org/cdimage/archive",
+    "mirror_directory": "9.11.0/ppc64el/iso-cd",
+
+    "preseed_path": "debian-9/preseed.cfg"
+}

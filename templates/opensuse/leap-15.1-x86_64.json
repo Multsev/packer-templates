@@ -1,0 +1,23 @@
+{
+    "template": "opensuse-leap-15.1-x86_64",
+    "name": "opensuse-leap-15.1",
+    "box_basename": "opensuse-leap-15.1",
+    "arch": "64",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "openSUSE-Leap-15.1-DVD-x86_64.iso",
+    "iso_checksum": "c6d3ed19fe5cc25c4667bf0b46cc86aebcfbca3b0073aed0a288834600cb8b97",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://suse.mobile-central.org/distribution",
+    "mirror_directory": "leap/15.1/iso",
+
+    "autoinst_cfg": "15/autoinst.xml"
+}

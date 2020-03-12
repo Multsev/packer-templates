@@ -1,0 +1,22 @@
+{
+    "template": "debian-9.11-i386",
+    "name": "debian-9.11-i386",
+    "box_basename": "debian-9.11-i386",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "debian-9.11.0-i386-netinst.iso",
+    "iso_checksum": "c24ac0bd549549bee755d842799153abf0b232f106c248e2efe48aa6209b6bd6",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://cdimage.debian.org/cdimage/archive",
+    "mirror_directory": "9.11.0/i386/iso-cd",
+
+    "preseed_path": "debian-9/preseed.cfg"
+}

@@ -1,0 +1,22 @@
+{
+    "template": "debian-10.2-amd64",
+    "name": "debian-10.2",
+    "box_basename": "debian-10.2",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "debian-10.2.0-amd64-netinst.iso",
+    "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://cdimage.debian.org/cdimage/release",
+    "mirror_directory": "10.2.0/amd64/iso-cd",
+
+    "preseed_path": "debian-9/preseed.cfg"
+}

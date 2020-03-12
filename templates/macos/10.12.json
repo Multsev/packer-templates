@@ -1,0 +1,17 @@
+{
+    "template": "macos-10.12",
+    "name": "macos-10.12",
+    "box_basename": "macos-10.12",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "2048",
+    "disk_size": "20G",
+
+    "iso_url": "http://YOU-MUST-PROVIDE-YOUR-OWN-DMG.sorry",
+    "iso_checksum": "__unset_iso_checksum__",
+    "iso_checksum_type": "md5",
+
+    "autologin": "true"
+}

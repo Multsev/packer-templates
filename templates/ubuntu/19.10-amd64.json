@@ -1,0 +1,22 @@
+{
+    "template": "ubuntu-19.10-amd64",
+    "name": "ubuntu-19.10",
+    "box_basename": "ubuntu-19.10",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "ubuntu-19.10-server-amd64.iso",
+    "iso_checksum": "921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://cdimage.ubuntu.com",
+    "mirror_directory": "ubuntu/releases/19.10.1/release",
+
+    "preseed_path": "preseed.cfg"
+}

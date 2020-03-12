@@ -1,0 +1,187 @@
+{
+  "variables": {
+    "build_directory": "{{template_dir}}/../../_builds",
+    "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
+    "http_directory": "{{template_dir}}/http",
+    "git_revision": "__unknown_git_revision__",
+    "headless": "",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "no_proxy": "{{env `no_proxy`}}",
+    "version": "TIMESTAMP"
+  },
+
+  "builders": [
+    {
+      "type": "qemu",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "name": "{{ user `template` }}",
+      "accelerator": "kvm",
+      "format": "qcow2",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+
+      "vnc_bind_address":"0.0.0.0",
+      "vnc_port_min":"5900",
+      "vnc_port_max":"5911",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<tab> linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks_path`}}<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-qemu"
+    },
+
+    {
+      "type": "virtualbox-iso",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "guest_os_type": "Fedora_64",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "virtualbox_version_file": ".vbox_version",
+      "guest_additions_url": "{{ user `guest_additions_url` }}",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "hard_drive_interface": "sata",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox"
+    },
+
+    {
+      "type": "vmware-iso",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "guest_os_type": "fedora-64",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "vmx_remove_ethernet_interfaces": true,
+      "tools_upload_flavor": "linux",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "ethernet0.pciSlotNumber": "32"
+      },
+
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-vmware"
+    },
+
+    {
+      "type": "parallels-iso",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "guest_os_type": "fedora-core",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "parallels_tools_flavor": "lin",
+      "prlctl_version_file": ".prlctl_version",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-parallels"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "environment_vars": [
+        "HOME_DIR=/home/vagrant",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}"
+      ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "expect_disconnect": true,
+      "scripts": [
+        "{{template_dir}}/scripts/swap.sh",
+        "{{template_dir}}/scripts/fix-slow-dns.sh",
+        "{{template_dir}}/scripts/build-tools.sh",
+        "{{template_dir}}/scripts/install-supporting-packages.sh",
+        "{{template_dir}}/../../_common/sshd.sh",
+        "{{template_dir}}/../../_common/virtualbox.sh",
+        "{{template_dir}}/scripts/open-vm-tools.sh",
+        "{{template_dir}}/../../_common/parallels.sh",
+        "{{template_dir}}/../../_common/vagrant.sh",
+        "{{template_dir}}/scripts/cleanup.sh",
+        "{{template_dir}}/../../_common/minimize.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+
+  "post-processors": [
+    {
+     "type": "vagrant",
+      "output": "{{ user `build_directory` }}/vagrant/{{user `box_basename`}}.{{.Provider}}.box"
+    }
+  ]
+}

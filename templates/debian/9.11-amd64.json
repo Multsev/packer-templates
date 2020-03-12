@@ -1,0 +1,22 @@
+{
+    "template": "debian-9.11-amd64",
+    "name": "debian-9.11",
+    "box_basename": "debian-9.11",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "debian-9.11.0-amd64-netinst.iso",
+    "iso_checksum": "9ae83aa5a732151ef2dc84538d1d4ffd6374df47cc01681da6348f9ec5a45bd4",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://cdimage.debian.org/cdimage/archive",
+    "mirror_directory": "9.11.0/amd64/iso-cd",
+
+    "preseed_path": "debian-9/preseed.cfg"
+}

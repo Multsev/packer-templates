@@ -1,0 +1,22 @@
+{
+    "template": "debian-8.11-i386",
+    "name": "debian-8.11-i386",
+    "box_basename": "debian-8.11-i386",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "debian-8.11.0-i386-CD-1.iso",
+    "iso_checksum": "4c56c06d2ba489409f50cbf073bf3656460336dd805b0245f9b419585680b7cd",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://cdimage.debian.org/cdimage/archive",
+    "mirror_directory": "8.11.0/i386/iso-cd",
+
+    "preseed_path": "debian-8/preseed.cfg"
+}

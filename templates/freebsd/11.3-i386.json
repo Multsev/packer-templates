@@ -1,0 +1,21 @@
+{
+    "template": "freebsd-11.3-i386",
+    "name": "freebsd-11.3-i386",
+    "box_basename": "freebsd-11.3-i386",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "iso_name": "FreeBSD-11.3-RELEASE-i386-disc1.iso",
+    "iso_checksum": "88860cc6ffd730dad3ee6d3eb1af88234430a26aca6f3e3e26a66521f1e66b74",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "https://download.freebsd.org/ftp",
+    "mirror_directory": "releases/i386/i386/ISO-IMAGES/11.3",
+    "pkg_branch": "quarterly",
+
+    "install_path": "freebsd-11/installerconfig"
+}

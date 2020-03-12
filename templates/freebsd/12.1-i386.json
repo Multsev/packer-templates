@@ -1,0 +1,21 @@
+{
+    "template": "freebsd-12.1-i386",
+    "name": "freebsd-12.1-i386",
+    "box_basename": "freebsd-12.1-i386",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "iso_checksum": "07b10e098e7c9b5e920679d3a9b3d12628f0b918c6e3962620b7f570a82cf41d",
+    "iso_checksum_type": "sha256",
+    "iso_name": "FreeBSD-12.1-RELEASE-i386-disc1.iso",
+
+    "mirror": "https://download.freebsd.org/ftp",
+    "mirror_directory": "releases/i386/i386/ISO-IMAGES/12.1",
+    "pkg_branch": "quarterly",
+
+    "install_path": "freebsd-11/installerconfig"
+}

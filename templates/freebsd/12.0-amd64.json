@@ -1,0 +1,21 @@
+{
+    "template": "freebsd-12.0-amd64",
+    "name": "freebsd-12.0",
+    "box_basename": "freebsd-12.0",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "iso_name": "FreeBSD-12.0-RELEASE-amd64-disc1.iso",
+    "iso_checksum": "63abec8aeb915f1a021dd2df6c7767251f9b6e87f403b7ddf9a423446d0a5453",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "https://download.freebsd.org/ftp",
+    "mirror_directory": "releases/amd64/amd64/ISO-IMAGES/12.0",
+    "pkg_branch": "quarterly",
+
+    "install_path": "freebsd-11/installerconfig"
+}

@@ -1,0 +1,213 @@
+{
+  "variables": {
+    "build_directory": "{{template_dir}}/../../_builds",
+    "http_directory": "{{template_dir}}/http",
+    "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
+    "git_revision": "__unknown_git_revision__",
+    "headless": "",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "no_proxy": "{{env `no_proxy`}}",
+    "version": "TIMESTAMP"
+  },
+
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "guest_os_type": "OpenSUSE_64",
+      "guest_additions_url": "{{ user `guest_additions_url` }}",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "hard_drive_interface": "sata",
+      "virtualbox_version_file": ".vbox_version",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "netdevice=eth0 ",
+        "netsetup=dhcp ",
+        "lang=en_US ",
+        "textmode=1 ",
+        "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}",
+        "<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox"
+    },
+
+    {
+      "type": "vmware-iso",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "guest_os_type": "opensuse-64",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "tools_upload_flavor": "linux",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1"
+      },
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -h 1",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "netdevice=eth0 ",
+        "netsetup=dhcp ",
+        "lang=en_US ",
+        "textmode=1 ",
+        "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}",
+        "<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-vmware"
+    },
+
+    {
+      "type": "parallels-iso",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "guest_os_type": "opensuse",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "prlctl_version_file": ".prlctl_version",
+      "parallels_tools_flavor": "lin",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "netdevice=eth0 ",
+        "netsetup=dhcp ",
+        "lang=en_US ",
+        "textmode=1 ",
+        "autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}",
+        "<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-parallels"
+    },
+
+    {
+      "type": "qemu",
+      "headless": "{{ user `headless` }}",
+      "http_directory": "{{user `http_directory`}}",
+
+      "vm_name": "{{ user `template` }}",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+
+      "vnc_bind_address":"0.0.0.0",
+      "vnc_port_min":"5900",
+      "vnc_port_max":"5911",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux netsetup=dhcp netdevice=eth0 install=cd:/<wait>",
+        " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
+        " textmode=1<wait>",
+        "<enter><wait>"
+      ],
+
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-qemu"
+    }
+  ],
+
+
+  "provisioners": [
+    {
+      "environment_vars": [
+        "HOME_DIR=/home/vagrant",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}"
+      ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh '{{.Path}}'",
+      "expect_disconnect": true,
+      "scripts": [
+        "{{template_dir}}/scripts/repositories.sh",
+        "{{template_dir}}/scripts/update.sh",
+        "{{template_dir}}/scripts/add_packages.sh",
+        "{{template_dir}}/../../_common/sshd.sh",
+        "{{template_dir}}/../../_common/vagrant.sh",
+        "{{template_dir}}/../../_common/virtualbox.sh",
+        "{{template_dir}}/../../_common/vmware.sh",
+        "{{template_dir}}/../../_common/parallels.sh",
+        "{{template_dir}}/scripts/vagrant_group.sh",
+        "{{template_dir}}/scripts/sudoers.sh",
+        "{{template_dir}}/scripts/zypper-locks.sh",
+        "{{template_dir}}/scripts/cleanup.sh",
+        "{{template_dir}}/../../_common/minimize.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+
+  "post-processors": [
+    {
+      "keep_input_artifact": true,
+      "output": "{{ user `build_directory` }}/vagrant/{{user `box_basename`}}.{{.Provider}}.box",
+      "type": "vagrant"
+    }
+  ]
+
+}

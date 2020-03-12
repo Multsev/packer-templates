@@ -1,0 +1,22 @@
+{
+    "template": "centos-6.10-x86_64",
+    "name": "centos-6.10",
+    "box_basename": "centos-6.10",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1G",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "CentOS-6.10-x86_64-bin-DVD1.iso",
+    "iso_checksum_type": "sha256",
+    "iso_checksum": "a68e46970678d4d297d46086ae2efdd3e994322d6d862ff51dcce25a0759e41c",
+
+    "mirror": "http://mirrors.kernel.org/centos",
+    "mirror_directory": "6.10/isos/x86_64",
+
+    "ks_path": "6/ks.cfg"
+}

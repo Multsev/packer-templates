@@ -1,0 +1,23 @@
+{
+    "template": "fedora-31-x86_64",
+    "name": "fedora-31",
+    "arch": "64",
+    "box_basename": "fedora-31",
+
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+
+    "cpus": "1",
+    "memory": "1024",
+    "disk_size": "10G",
+
+    "guest_additions_url": "",
+
+    "iso_name": "Fedora-Server-dvd-x86_64-31-1.9.iso",
+    "iso_checksum": "225ebc160e40bb43c5de28bad9680e3a78a9db40c9e3f4f42f3ee3f10f95dbeb",
+    "iso_checksum_type": "sha256",
+
+    "mirror": "http://download.fedoraproject.org/pub/fedora/linux",
+    "mirror_directory": "releases/31/Server/x86_64/iso",
+
+    "ks_path": "ks-fedora.cfg"
+}
