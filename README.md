@@ -54,7 +54,7 @@ Expand-Archive -Path "$env:USERPROFILE/packer.zip" -DestinationPath "C:\Program 
 
 1. Clone the repo
 ```sh
-git clone https://github.com/multsev/packer-template.git
+git clone https://github.com/Multsev/packer-templates.git
 ```
 3. Start builds
 ```sh
